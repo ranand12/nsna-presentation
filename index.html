@@ -8,8 +8,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #0a0a0a;
-    color: #f5f5f7;
+    background: #ffffff;
+    color: #1a1a1a;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
     font-weight: 400;
     overflow: hidden;
@@ -86,18 +86,18 @@
   h1 {
     font-size: 64px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     text-align: center;
     line-height: 1.15;
     margin-bottom: 20px;
     letter-spacing: -1px;
   }
-  h1 strong { color: #DA7756; }
+  h1 strong { color: #C04820; }
   h1.huge { font-size: 80px; }
 
   .subtext {
     font-size: 22px;
-    color: #86868b;
+    color: #444444;
     text-align: center;
     max-width: 700px;
     margin-left: auto;
@@ -108,14 +108,14 @@
   .big-stat {
     font-size: 180px;
     font-weight: 700;
-    color: #DA7756;
+    color: #C04820;
     line-height: 1;
     margin-bottom: 10px;
   }
 
   .narrative-bridge {
     font-size: 28px;
-    color: #86868b;
+    color: #444444;
     text-align: center;
     font-style: italic;
     max-width: 600px;
@@ -125,12 +125,12 @@
   .question-text {
     font-size: 52px;
     font-weight: 600;
-    color: #fff;
+    color: #111111;
     text-align: center;
     line-height: 1.3;
     max-width: 800px;
   }
-  .question-text strong { color: #DA7756; }
+  .question-text strong { color: #C04820; }
 
   /* Cards */
   .card-grid {
@@ -142,45 +142,45 @@
   .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 
   .card {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 20px;
     padding: 36px 30px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
     transition: border-color 0.4s, background 0.4s, opacity 0.5s, transform 0.5s;
   }
   .card.highlight {
-    border-color: #DA7756;
-    background: rgba(218,119,86,0.06);
+    border-color: #C04820;
+    background: rgba(192,72,32,0.10);
   }
   .card.dimmed {
     opacity: 0.25;
     transform: scale(0.95);
   }
   .card.winner {
-    border-color: #DA7756;
-    background: rgba(218,119,86,0.06);
+    border-color: #C04820;
+    background: rgba(192,72,32,0.10);
     animation: softPulse 2s ease-in-out infinite;
   }
 
   .card h3 {
     font-size: 24px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 12px;
   }
   .card p {
     font-size: 16px;
-    color: #86868b;
+    color: #444444;
     line-height: 1.5;
   }
   .card .card-stat {
     font-size: 48px;
     font-weight: 700;
-    color: #DA7756;
+    color: #C04820;
     margin-bottom: 8px;
   }
-  .card .card-stat.gray { color: #86868b; }
+  .card .card-stat.gray { color: #444444; }
 
   /* Comparison */
   .comparison {
@@ -195,49 +195,49 @@
   .vs-badge {
     font-size: 22px;
     font-weight: 700;
-    color: #86868b;
+    color: #444444;
     text-align: center;
     align-self: center;
   }
 
   .panel {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 20px;
     padding: 40px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
     transition: border-color 0.5s, background 0.5s;
   }
   .panel.highlight {
-    border-color: #DA7756;
-    background: rgba(218,119,86,0.06);
+    border-color: #C04820;
+    background: rgba(192,72,32,0.10);
   }
   .panel h3 {
     font-size: 22px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 16px;
   }
   .stat-row {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
     font-size: 17px;
   }
   .stat-row:last-child { border-bottom: none; }
-  .stat-row .label { color: #86868b; }
-  .stat-row .value { color: #fff; font-weight: 600; }
-  .panel.highlight .stat-row .value { color: #DA7756; }
+  .stat-row .label { color: #444444; }
+  .stat-row .value { color: #111111; font-weight: 600; }
+  .panel.highlight .stat-row .value { color: #C04820; }
 
   /* Charts */
   .chart-container {
     width: 100%;
     max-width: 900px;
     margin-top: 30px;
-    background: rgba(255,255,255,0.03);
+    background: rgba(0,0,0,0.04);
     border-radius: 20px;
     padding: 40px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
   }
   canvas { width: 100%; display: block; }
 
@@ -252,7 +252,7 @@
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: #86868b;
+    color: #444444;
   }
   .legend-dot {
     width: 12px;
@@ -271,14 +271,14 @@
   .bar-label {
     width: 100px;
     font-size: 15px;
-    color: #86868b;
+    color: #444444;
     text-align: right;
     flex-shrink: 0;
   }
   .bar-track {
     flex: 1;
     height: 42px;
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 10px;
     overflow: hidden;
   }
@@ -290,11 +290,11 @@
     padding-left: 14px;
     font-size: 15px;
     font-weight: 600;
-    color: #fff;
+    color: #111111;
     width: 0%;
     transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .bar-fill.passive { background: #DA7756; }
+  .bar-fill.passive { background: #C04820; }
 
   /* Bullet list */
   .bullet-list {
@@ -305,11 +305,11 @@
   .bullet-list li {
     padding: 14px 0;
     font-size: 22px;
-    color: #f5f5f7;
+    color: #1a1a1a;
     display: flex;
     align-items: center;
     gap: 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
   }
   .bullet-list li:last-child { border-bottom: none; }
   .bullet-list .icon {
@@ -324,7 +324,7 @@
   }
   .icon.red { background: rgba(255,59,48,0.15); color: #ff3b30; }
   .icon.green { background: rgba(52,199,89,0.15); color: #34c759; }
-  .icon.orange { background: rgba(218,119,86,0.15); color: #DA7756; }
+  .icon.orange { background: rgba(192,72,32,0.18); color: #C04820; }
 
   /* Noise cards */
   .noise-grid {
@@ -335,15 +335,15 @@
     max-width: 900px;
   }
   .noise-card {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 28px 20px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
   }
   .noise-card .persona {
     font-size: 14px;
-    color: #DA7756;
+    color: #C04820;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -351,7 +351,7 @@
   }
   .noise-card .says {
     font-size: 16px;
-    color: #86868b;
+    color: #444444;
     font-style: italic;
     line-height: 1.4;
   }
@@ -365,27 +365,27 @@
     max-width: 900px;
   }
   .flow-box {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 28px 24px;
     text-align: center;
     flex: 1;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
   }
   .flow-box h4 {
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 8px;
   }
   .flow-box p {
     font-size: 15px;
-    color: #86868b;
+    color: #444444;
     line-height: 1.4;
   }
   .flow-arrow {
     font-size: 28px;
-    color: #DA7756;
+    color: #C04820;
     flex-shrink: 0;
   }
   .flow-step .reveal {
@@ -415,40 +415,40 @@
     border-radius: 20px;
     padding: 28px 36px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
     width: 100%;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .fund-block h3 {
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 6px;
   }
   .fund-block p {
-    color: #86868b;
+    color: #444444;
     line-height: 1.4;
   }
   .fund-block.fund-1 {
-    background: rgba(218,119,86,0.12);
-    border-color: rgba(218,119,86,0.3);
+    background: rgba(192,72,32,0.15);
+    border-color: rgba(192,72,32,0.4);
   }
   .fund-block.fund-1 h3 { font-size: 28px; }
   .fund-block.fund-1 p { font-size: 18px; }
   .fund-block.fund-2 {
-    background: rgba(218,119,86,0.08);
-    border-color: rgba(218,119,86,0.2);
+    background: rgba(192,72,32,0.12);
+    border-color: rgba(192,72,32,0.3);
     max-width: 85%;
   }
   .fund-block.fund-2 h3 { font-size: 24px; }
   .fund-block.fund-2 p { font-size: 16px; }
   .fund-block.fund-3 {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     max-width: 70%;
   }
   .fund-block.fund-3 h3 { font-size: 20px; }
   .fund-block.fund-3 p { font-size: 15px; }
   .fund-block.fund-4 {
-    background: rgba(255,255,255,0.03);
+    background: rgba(0,0,0,0.04);
     max-width: 55%;
   }
   .fund-block.fund-4 h3 { font-size: 18px; }
@@ -468,14 +468,14 @@
     border-radius: 50%;
     position: relative;
     flex-shrink: 0;
-    background: conic-gradient(#DA7756 0deg 324deg, rgba(255,255,255,0.12) 324deg 360deg);
+    background: conic-gradient(#C04820 0deg 324deg, rgba(0,0,0,0.12) 324deg 360deg);
   }
   .pie-center {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 120px; height: 120px;
-    background: #0a0a0a;
+    background: #ffffff;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -486,7 +486,7 @@
   }
   .split-label {
     padding: 16px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
   }
   .split-label:last-child { border-bottom: none; }
   .split-label .pct {
@@ -494,11 +494,11 @@
     font-weight: 700;
     margin-bottom: 4px;
   }
-  .split-label .pct.accent { color: #DA7756; }
-  .split-label .pct.gray { color: #86868b; }
+  .split-label .pct.accent { color: #C04820; }
+  .split-label .pct.gray { color: #444444; }
   .split-label .desc {
     font-size: 17px;
-    color: #86868b;
+    color: #444444;
     line-height: 1.4;
   }
 
@@ -511,8 +511,8 @@
     max-width: 1000px;
   }
   .takeaway-item {
-    background: rgba(218,119,86,0.06);
-    border: 1px solid rgba(218,119,86,0.2);
+    background: rgba(192,72,32,0.10);
+    border: 1px solid rgba(192,72,32,0.3);
     border-radius: 20px;
     padding: 36px 28px;
     text-align: center;
@@ -520,18 +520,18 @@
   .takeaway-item .num {
     font-size: 48px;
     font-weight: 700;
-    color: #DA7756;
+    color: #C04820;
     margin-bottom: 12px;
   }
   .takeaway-item h4 {
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 10px;
   }
   .takeaway-item p {
     font-size: 15px;
-    color: #86868b;
+    color: #444444;
     line-height: 1.5;
   }
 
@@ -544,11 +544,11 @@
     max-width: 900px;
   }
   .ws-card {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 28px 24px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
   }
   .ws-card .ws-stat {
     font-size: 36px;
@@ -559,12 +559,12 @@
   .ws-card h4 {
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 8px;
   }
   .ws-card p {
     font-size: 14px;
-    color: #86868b;
+    color: #444444;
     line-height: 1.4;
   }
 
@@ -577,11 +577,11 @@
     max-width: 900px;
   }
   .index-step {
-    background: rgba(255,255,255,0.04);
+    background: rgba(0,0,0,0.05);
     border-radius: 16px;
     padding: 28px 24px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,0,0,0.15);
   }
   .index-step .step-icon {
     font-size: 48px;
@@ -590,12 +590,12 @@
   .index-step h4 {
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: #111111;
     margin-bottom: 8px;
   }
   .index-step p {
     font-size: 15px;
-    color: #86868b;
+    color: #444444;
     line-height: 1.5;
   }
 
@@ -618,7 +618,7 @@
     cursor: pointer;
   }
   .progress .dot.active {
-    background: #DA7756;
+    background: #C04820;
     width: 24px;
     border-radius: 4px;
   }
@@ -643,7 +643,7 @@
 
   @keyframes softPulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(218,119,86,0); }
-    50% { box-shadow: 0 0 30px 0 rgba(218,119,86,0.15); }
+    50% { box-shadow: 0 0 30px 0 rgba(192,72,32,0.18); }
   }
 
   /* Hot tip card */
@@ -657,20 +657,20 @@
   }
   .hot-tip-card .quote {
     font-size: 26px;
-    color: #f5f5f7;
+    color: #1a1a1a;
     font-style: italic;
     line-height: 1.5;
     margin-bottom: 16px;
   }
   .hot-tip-card .attribution {
     font-size: 16px;
-    color: #86868b;
+    color: #444444;
   }
 
   .count-up {
     font-size: 180px;
     font-weight: 700;
-    color: #DA7756;
+    color: #C04820;
     line-height: 1;
     margin-bottom: 10px;
     font-variant-numeric: tabular-nums;
@@ -1032,7 +1032,7 @@
     </div>
   </div>
   <div class="reveal" data-step="4">
-    <p class="subtext" style="margin-top: 24px;">"The beauty of owning the index is that you eliminate individual stock risk, eliminate manager risk, and pretty much just own the whole economy." <span style="color:#DA7756;">— JL Collins</span></p>
+    <p class="subtext" style="margin-top: 24px;">"The beauty of owning the index is that you eliminate individual stock risk, eliminate manager risk, and pretty much just own the whole economy." <span style="color:#C04820;">— JL Collins</span></p>
   </div>
 </div>
 
@@ -1076,7 +1076,7 @@
     </div>
   </div>
   <div class="reveal" data-step="3">
-    <p class="subtext" style="margin-top: 24px;"><strong style="color:#DA7756;">Doing nothing</strong> beat the smartest people on Wall Street.</p>
+    <p class="subtext" style="margin-top: 24px;"><strong style="color:#C04820;">Doing nothing</strong> beat the smartest people on Wall Street.</p>
   </div>
   <span class="source-tag">Source: Berkshire Hathaway 2017 Annual Letter, LongBets.org</span>
 </div>
@@ -1137,15 +1137,15 @@
 <!-- ============================================ -->
 <div class="slide" id="slide-15">
   <div class="reveal" data-step="0">
-    <video autoplay muted loop playsinline style="max-height: 300px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.06);">
+    <video autoplay muted loop playsinline style="max-height: 300px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.15);">
       <source src="videoplayback.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="reveal-scale" data-step="1" style="margin-top: 40px; max-width: 700px; position: relative; padding: 40px 48px; background: rgba(218,119,86,0.06); border-radius: 24px; border: 1px solid rgba(218,119,86,0.15);">
-    <span style="position: absolute; top: -10px; left: 24px; font-size: 80px; color: rgba(218,119,86,0.3); font-family: Georgia, serif; line-height: 1;">"</span>
-    <p style="font-size: 32px; font-weight: 500; line-height: 1.5; color: #f5f5f7; margin: 0;">Don't look for the <strong>needle</strong> in the haystack.<br>Just <strong style="color:#DA7756; font-size: 38px;">buy the haystack</strong>.</p>
-    <p style="margin-top: 20px; font-size: 18px; color: #DA7756; letter-spacing: 1px;">— Jack Bogle</p>
-    <span style="position: absolute; bottom: -30px; right: 24px; font-size: 80px; color: rgba(218,119,86,0.3); font-family: Georgia, serif; line-height: 1;">"</span>
+  <div class="reveal-scale" data-step="1" style="margin-top: 40px; max-width: 700px; position: relative; padding: 40px 48px; background: rgba(192,72,32,0.10); border-radius: 24px; border: 1px solid rgba(192,72,32,0.18);">
+    <span style="position: absolute; top: -10px; left: 24px; font-size: 80px; color: rgba(192,72,32,0.4); font-family: Georgia, serif; line-height: 1;">"</span>
+    <p style="font-size: 32px; font-weight: 500; line-height: 1.5; color: #1a1a1a; margin: 0;">Don't look for the <strong>needle</strong> in the haystack.<br>Just <strong style="color:#C04820; font-size: 38px;">buy the haystack</strong>.</p>
+    <p style="margin-top: 20px; font-size: 18px; color: #C04820; letter-spacing: 1px;">— Jack Bogle</p>
+    <span style="position: absolute; bottom: -30px; right: 24px; font-size: 80px; color: rgba(192,72,32,0.4); font-family: Georgia, serif; line-height: 1;">"</span>
   </div>
 </div>
 
@@ -1154,7 +1154,7 @@
 <!-- ============================================ -->
 <div class="slide" id="slide-16">
   <div class="reveal" data-step="0">
-    <p class="subtext" style="margin-bottom: 20px; font-size: 18px; text-transform: uppercase; letter-spacing: 3px; color: #DA7756;">For wealth building in the stock market</p>
+    <p class="subtext" style="margin-bottom: 20px; font-size: 18px; text-transform: uppercase; letter-spacing: 3px; color: #C04820;">For wealth building in the stock market</p>
   </div>
   <div class="reveal" data-step="1">
     <h1>There is clearly only<br>one <strong>winner</strong></h1>
@@ -1194,7 +1194,7 @@
     </div>
   </div>
   <div class="reveal" data-step="2">
-    <p class="subtext" style="margin-top: 24px;">After all, life has to have some <strong style="color:#DA7756;">spice</strong> &#127798;</p>
+    <p class="subtext" style="margin-top: 24px;">After all, life has to have some <strong style="color:#C04820;">spice</strong> &#127798;</p>
   </div>
 </div>
 
@@ -1225,7 +1225,7 @@
     </div>
   </div>
   <div class="reveal" data-step="5">
-    <p class="subtext" style="margin-top: 20px;">Want to keep it <em>really</em> simple? Just buy <strong style="color:#DA7756;">VTSAX</strong> and be done.</p>
+    <p class="subtext" style="margin-top: 20px;">Want to keep it <em>really</em> simple? Just buy <strong style="color:#C04820;">VTSAX</strong> and be done.</p>
   </div>
 </div>
 
@@ -1255,15 +1255,15 @@
   <div class="chart-container reveal" data-step="1">
     <canvas id="compoundChart" width="820" height="360"></canvas>
     <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background: #DA7756;"></div> Start at 18</div>
+      <div class="legend-item"><div class="legend-dot" style="background: #C04820;"></div> Start at 18</div>
       <div class="legend-item"><div class="legend-dot" style="background: #555;"></div> Start at 28</div>
     </div>
   </div>
   <div class="reveal" data-step="2">
-    <p class="subtext" style="margin-top: 16px;"><strong style="color: #DA7756; font-size: 26px;">$2,563,839</strong> vs <strong style="color: #86868b; font-size: 26px;">$931,966</strong></p>
+    <p class="subtext" style="margin-top: 16px;"><strong style="color: #C04820; font-size: 26px;">$2,563,839</strong> vs <strong style="color: #444444; font-size: 26px;">$931,966</strong></p>
   </div>
   <div class="reveal" data-step="3">
-    <p class="subtext">10 early years = <strong style="color: #fff; font-size: 24px;">$1.63 million</strong> more. That's the power of starting early.</p>
+    <p class="subtext">10 early years = <strong style="color: #111111; font-size: 24px;">$1.63 million</strong> more. That's the power of starting early.</p>
   </div>
   <span class="source-tag">Source: 10% avg S&P 500 historical return, compound interest formula</span>
 </div>
@@ -1279,7 +1279,7 @@
     <canvas id="sp500Chart" width="820" height="340"></canvas>
   </div>
   <div class="reveal" data-step="2">
-    <p class="subtext" style="margin-top: 10px; font-size: 18px;">"The market always recovers. Always. And if someday it doesn't, no investment will be safe and none of this will matter anyway." <span style="color:#DA7756;">— JL Collins</span></p>
+    <p class="subtext" style="margin-top: 10px; font-size: 18px;">"The market always recovers. Always. And if someday it doesn't, no investment will be safe and none of this will matter anyway." <span style="color:#C04820;">— JL Collins</span></p>
   </div>
   <span class="source-tag">Source: S&P 500 total returns w/ dividends reinvested</span>
 </div>
@@ -1289,13 +1289,13 @@
 <!-- ============================================ -->
 <div class="slide" id="slide-21">
   <div class="reveal" data-step="0">
-    <p class="subtext" style="margin-bottom: 30px; font-size: 18px; text-transform: uppercase; letter-spacing: 3px; color: #DA7756;">Remember</p>
+    <p class="subtext" style="margin-bottom: 30px; font-size: 18px; text-transform: uppercase; letter-spacing: 3px; color: #C04820;">Remember</p>
   </div>
   <div class="takeaway-grid">
     <div class="takeaway-item reveal-scale" data-step="1">
       <div class="num">1</div>
       <h4>VTSAX and Chill</h4>
-      <p>Passive index funds handle the wealth building so you don't have to. <strong style="color:#DA7756;">VTSAX and chill.</strong></p>
+      <p>Passive index funds handle the wealth building so you don't have to. <strong style="color:#C04820;">VTSAX and chill.</strong></p>
     </div>
     <div class="takeaway-item reveal-scale" data-step="2">
       <div class="num">2</div>
@@ -1305,7 +1305,7 @@
     <div class="takeaway-item reveal-scale" data-step="3">
       <div class="num">3</div>
       <h4>Be Consistent</h4>
-      <p>Invest through ups and downs — <strong style="color:#DA7756;">especially through downs</strong>. Don't panic sell. The market always recovers.</p>
+      <p>Invest through ups and downs — <strong style="color:#C04820;">especially through downs</strong>. Don't panic sell. The market always recovers.</p>
     </div>
   </div>
   <div class="reveal" data-step="4">
@@ -1537,16 +1537,16 @@
     function y(val) { return padT + cH - (val / maxVal) * cH; }
 
     // Grid
-    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.strokeStyle = 'rgba(0,0,0,0.15)';
     ctx.lineWidth = 1;
     for (let v = 0; v <= 2500000; v += 500000) {
       ctx.beginPath(); ctx.moveTo(padL, y(v)); ctx.lineTo(padL + cW, y(v)); ctx.stroke();
-      ctx.fillStyle = '#86868b'; ctx.font = '13px -apple-system, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillStyle = '#444444'; ctx.font = '13px -apple-system, sans-serif'; ctx.textAlign = 'right';
       ctx.fillText('$' + (v/1000000).toFixed(1) + 'M', padL - 10, y(v) + 4);
     }
     ctx.textAlign = 'center';
     for (let age = 20; age <= 65; age += 5) {
-      ctx.fillStyle = '#86868b'; ctx.fillText(age.toString(), x(age), H - padB + 25);
+      ctx.fillStyle = '#444444'; ctx.fillText(age.toString(), x(age), H - padB + 25);
     }
     ctx.fillText('Age', (padL + padL + cW) / 2, H - 5);
 
@@ -1560,21 +1560,21 @@
     ctx.beginPath(); ctx.moveTo(x(18), y(0));
     early.forEach(p => ctx.lineTo(x(p.age), y(p.val)));
     ctx.lineTo(x(65), y(0)); ctx.closePath();
-    ctx.fillStyle = 'rgba(218,119,86,0.08)'; ctx.fill();
+    ctx.fillStyle = 'rgba(192,72,32,0.12)'; ctx.fill();
 
     drawLine(late, '#555', 2.5);
-    drawLine(early, '#DA7756', 3);
+    drawLine(early, '#C04820', 3);
 
     // End dots
     ctx.beginPath(); ctx.arc(x(65), y(early[early.length-1].val), 5, 0, Math.PI * 2);
-    ctx.fillStyle = '#DA7756'; ctx.fill();
+    ctx.fillStyle = '#C04820'; ctx.fill();
     ctx.beginPath(); ctx.arc(x(65), y(late[late.length-1].val), 5, 0, Math.PI * 2);
     ctx.fillStyle = '#555'; ctx.fill();
 
     // Labels
     ctx.font = 'bold 17px -apple-system, sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#DA7756';
+    ctx.fillStyle = '#C04820';
     ctx.fillText('$2.56M', x(65) + 12, y(early[early.length-1].val) + 5);
     ctx.fillStyle = '#888';
     ctx.fillText('$932K', x(65) + 12, y(late[late.length-1].val) + 5);
@@ -1583,13 +1583,13 @@
     const earlyAt55 = early[55 - 18].val;
     const lateAt55 = late[55 - 18].val;
     const gapY = (y(earlyAt55) + y(lateAt55)) / 2;
-    ctx.fillStyle = 'rgba(218,119,86,0.5)';
+    ctx.fillStyle = 'rgba(192,72,32,0.7)';
     ctx.font = '14px -apple-system, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('$1.63M gap', x(53), gapY);
 
     // Dashed gap line
-    ctx.strokeStyle = 'rgba(218,119,86,0.3)';
+    ctx.strokeStyle = 'rgba(192,72,32,0.4)';
     ctx.setLineDash([4, 4]);
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -1623,15 +1623,15 @@
     function x(yr) { return padL + ((yr - 1980) / (2025 - 1980)) * cW; }
     function y(val) { return padT + cH - (val / maxVal) * cH; }
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(0,0,0,0.15)'; ctx.lineWidth = 1;
     [0, 500000, 1000000, 1500000, 2000000].forEach(v => {
       ctx.beginPath(); ctx.moveTo(padL, y(v)); ctx.lineTo(padL + cW, y(v)); ctx.stroke();
-      ctx.fillStyle = '#86868b'; ctx.font = '13px -apple-system, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillStyle = '#444444'; ctx.font = '13px -apple-system, sans-serif'; ctx.textAlign = 'right';
       ctx.fillText(v === 0 ? '$0' : '$' + (v/1000000).toFixed(1) + 'M', padL - 10, y(v) + 4);
     });
     ctx.textAlign = 'center';
     for (let yr = 1980; yr <= 2025; yr += 5) {
-      ctx.fillStyle = '#86868b'; ctx.fillText(yr.toString(), x(yr), H - padB + 25);
+      ctx.fillStyle = '#444444'; ctx.fillText(yr.toString(), x(yr), H - padB + 25);
     }
 
     [{ year: 1987, label: 'Black Monday' }, { year: 2000, label: 'Dot-com' }, { year: 2009, label: '2008 Crisis' }, { year: 2020, label: 'COVID' }].forEach(c => {
@@ -1645,21 +1645,21 @@
     ctx.beginPath(); ctx.moveTo(x(1980), y(0));
     data.forEach(p => ctx.lineTo(x(p.year), y(p.val)));
     ctx.lineTo(x(2025), y(0)); ctx.closePath();
-    ctx.fillStyle = 'rgba(218,119,86,0.08)'; ctx.fill();
+    ctx.fillStyle = 'rgba(192,72,32,0.12)'; ctx.fill();
 
-    ctx.beginPath(); ctx.strokeStyle = '#DA7756'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.strokeStyle = '#C04820'; ctx.lineWidth = 2.5;
     data.forEach((p, i) => { if (i === 0) ctx.moveTo(x(p.year), y(p.val)); else ctx.lineTo(x(p.year), y(p.val)); });
     ctx.stroke();
 
-    ctx.beginPath(); ctx.arc(x(1980), y(10000), 5, 0, Math.PI * 2); ctx.fillStyle = '#86868b'; ctx.fill();
-    ctx.beginPath(); ctx.arc(x(2025), y(1900000), 6, 0, Math.PI * 2); ctx.fillStyle = '#DA7756'; ctx.fill();
+    ctx.beginPath(); ctx.arc(x(1980), y(10000), 5, 0, Math.PI * 2); ctx.fillStyle = '#444444'; ctx.fill();
+    ctx.beginPath(); ctx.arc(x(2025), y(1900000), 6, 0, Math.PI * 2); ctx.fillStyle = '#C04820'; ctx.fill();
 
-    ctx.font = '13px -apple-system, sans-serif'; ctx.fillStyle = '#86868b'; ctx.textAlign = 'left';
+    ctx.font = '13px -apple-system, sans-serif'; ctx.fillStyle = '#444444'; ctx.textAlign = 'left';
     ctx.fillText('$10,000', x(1980) + 10, y(10000) - 8);
-    ctx.font = 'bold 16px -apple-system, sans-serif'; ctx.fillStyle = '#DA7756';
+    ctx.font = 'bold 16px -apple-system, sans-serif'; ctx.fillStyle = '#C04820';
     ctx.fillText('$1.9M', x(2025) - 55, y(1900000) - 12);
 
-    ctx.font = '12px -apple-system, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.25)'; ctx.textAlign = 'center';
+    ctx.font = '12px -apple-system, sans-serif'; ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.textAlign = 'center';
     ctx.fillText('Survived every crash. Still held.', x(2005), y(800000));
   }
 
