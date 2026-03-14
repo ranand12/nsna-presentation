@@ -86,63 +86,55 @@
     line-height: 1;
   }
 
-  /* ---- Venn Diagram (nested rounded rects, centered) ---- */
+  /* ---- Venn Diagram (concentric nested rects) ---- */
   .venn-container {
-    position: relative;
-    width: min(750px, 88vw);
-    height: min(400px, 50vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 30px;
   }
 
   .venn-circle {
-    position: absolute;
     border-radius: var(--radius);
     display: flex;
+    flex-direction: column;
     font-weight: 700;
     font-size: clamp(14px, 1.8vw, 22px);
     color: var(--bold);
-    text-align: left;
     transition: opacity 0.45s ease, transform 0.45s ease;
   }
 
   .venn-ai {
-    inset: 0;
     background: rgba(192, 86, 48, 0.06);
     border: 2.5px solid rgba(192, 86, 48, 0.3);
-    padding: 24px 28px;
-    align-items: flex-start;
-    justify-content: flex-start;
+    padding: 28px 32px;
+    width: min(750px, 88vw);
   }
 
   .venn-ml {
-    width: 72%;
-    height: 74%;
-    bottom: 6%;
-    right: 5%;
     background: rgba(46, 111, 217, 0.08);
     border: 2.5px solid rgba(46, 111, 217, 0.3);
-    padding: 20px 24px;
-    align-items: flex-start;
-    justify-content: flex-start;
+    padding: 24px 28px;
+    margin-top: 16px;
+    margin-left: auto;
+    width: 85%;
   }
 
   .venn-dl {
-    width: 55%;
-    height: 52%;
-    bottom: 10%;
-    right: 9%;
     background: rgba(46, 139, 74, 0.08);
     border: 2.5px solid rgba(46, 139, 74, 0.35);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    padding: 28px 24px;
+    margin-top: 14px;
+    margin-left: auto;
+    width: 80%;
     text-align: center;
+    align-items: center;
   }
 
   .venn-label {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
   }
 
   .venn-label span {
@@ -852,17 +844,17 @@
           🧠 Artificial Intelligence
           <span>Systems that mimic human reasoning</span>
         </div>
-      </div>
-      <div class="venn-circle venn-ml fragment">
-        <div class="venn-label">
-          📊 Machine Learning
-          <span>Systems that learn from data</span>
-        </div>
-      </div>
-      <div class="venn-circle venn-dl fragment" style="z-index:1;">
-        <div class="venn-label">
-          🧬 Deep Learning
-          <span>Neural networks with many layers</span>
+        <div class="venn-circle venn-ml fragment">
+          <div class="venn-label">
+            📊 Machine Learning
+            <span>Systems that learn from data</span>
+          </div>
+          <div class="venn-circle venn-dl fragment">
+            <div class="venn-label">
+              🧬 Deep Learning
+              <span>Neural networks with many layers</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
