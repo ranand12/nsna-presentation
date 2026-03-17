@@ -121,6 +121,9 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 .progress .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.3s; cursor: pointer; }
 .progress .dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
 .slide-number { position: fixed; top: 30px; right: 40px; font-size: 14px; color: rgba(255,255,255,0.15); font-variant-numeric: tabular-nums; z-index: 100; }
+.step-indicator { position: absolute; top: 30px; left: 40px; display: flex; gap: 8px; }
+.step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); }
+.step-dot.active-step { color: var(--bold); background: rgba(218,119,86,0.2); border-color: var(--accent); }
 
 /* Responsive */
 @media (max-width: 700px) {
@@ -307,6 +310,12 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 
 <!-- SLIDE 5: API — Not Direct Competition -->
 <div class="slide" id="slide-5">
+  <div class="step-indicator">
+    <div class="step-dot active-step">1</div>
+    <div class="step-dot">2</div>
+    <div class="step-dot">3</div>
+    <div class="step-dot">4</div>
+  </div>
   <div class="reveal" data-step="0">
     <h2>Through the API: <strong>Not Direct Competition</strong></h2>
   </div>
@@ -332,6 +341,12 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 
 <!-- SLIDE 6: Through the App -->
 <div class="slide" id="slide-6">
+  <div class="step-indicator">
+    <div class="step-dot">1</div>
+    <div class="step-dot active-step">2</div>
+    <div class="step-dot">3</div>
+    <div class="step-dot">4</div>
+  </div>
   <div class="reveal" data-step="0">
     <h2>Through the <strong>App</strong></h2>
     <p class="subtext">Workspace integration is the battleground</p>
@@ -361,6 +376,12 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 
 <!-- SLIDE 7: Through IDE -->
 <div class="slide" id="slide-7">
+  <div class="step-indicator">
+    <div class="step-dot">1</div>
+    <div class="step-dot">2</div>
+    <div class="step-dot active-step">3</div>
+    <div class="step-dot">4</div>
+  </div>
   <div class="reveal" data-step="0">
     <h2>Through the <strong>IDE</strong></h2>
     <p class="subtext">The coding assistant race</p>
@@ -399,6 +420,12 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 
 <!-- SLIDE 8: Enterprise -->
 <div class="slide" id="slide-8">
+  <div class="step-indicator">
+    <div class="step-dot">1</div>
+    <div class="step-dot">2</div>
+    <div class="step-dot">3</div>
+    <div class="step-dot active-step">4</div>
+  </div>
   <div class="reveal" data-step="0">
     <h2><strong>Enterprise</strong> Solutions</h2>
   </div>
