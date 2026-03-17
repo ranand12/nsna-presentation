@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gemini vs Claude — Where They Compete</title>
+<style>
+:root {
+  --bg: #0a0a0a;
+  --text: #f5f5f7;
+  --bold: #fff;
+  --secondary: #86868b;
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.06);
+  --radius: 20px;
+  --accent: #DA7756;
+  --accent2: #4285F4;
+  --accent3: #2E8B4A;
+  --gemini: #4285F4;
+  --claude: #DA7756;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif; font-weight: 400; }
+body { cursor: none; }
+body.cursor-visible { cursor: default; }
+.slide { display: none; position: absolute; inset: 0; flex-direction: column; justify-content: center; align-items: center; padding: 60px 80px; gap: 30px; }
+.slide.active { display: flex; }
+strong { color: var(--accent); font-weight: 700; }
+h1 { font-size: 56px; font-weight: 700; color: var(--bold); text-align: center; line-height: 1.2; letter-spacing: -1px; }
+h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; line-height: 1.2; }
+.subtext { font-size: 22px; color: var(--secondary); text-align: center; max-width: 700px; margin-top: 8px; }
+.small-subtext { font-size: 16px; color: var(--secondary); text-align: center; max-width: 600px; }
+
+/* Reveal system */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); pointer-events: none; text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; }
+.reveal.shown { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.reveal.shown-fast { opacity: 1; transform: translateY(0); pointer-events: auto; transition-duration: 0s; }
+.reveal-scale { opacity: 0; transform: scale(0.7); transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.reveal-scale.shown, .reveal-scale.shown-fast { opacity: 1; transform: scale(1); }
+.reveal-scale.shown-fast { transition-duration: 0s; }
+.reveal-blur { opacity: 0; filter: blur(20px); transform: scale(1.05); transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease; text-align: center; width: 100%; display: flex; flex-direction: column; align-items: center; }
+.reveal-blur.shown, .reveal-blur.shown-fast { opacity: 1; filter: blur(0); transform: scale(1); }
+.reveal-blur.shown-fast { transition-duration: 0s; }
+
+/* Cards */
+.card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 24px; }
+.card-grid { display: grid; gap: 16px; width: 100%; max-width: 1100px; }
+.card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.card-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.card-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.card .icon { font-size: 36px; margin-bottom: 12px; }
+.card .card-title { font-size: 18px; font-weight: 700; color: var(--bold); margin-bottom: 6px; }
+.card .card-desc { font-size: 14px; color: var(--secondary); line-height: 1.5; }
+.card.highlight { border-color: var(--accent); background: rgba(218,119,86,0.06); }
+.card.gemini-border { border-color: var(--gemini); background: rgba(66,133,244,0.06); }
+.card.claude-border { border-color: var(--claude); background: rgba(218,119,86,0.06); }
+
+/* Comparison panels */
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; max-width: 1000px; }
+.comparison-panel { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 32px 28px; }
+.comparison-panel.gemini { border-top: 3px solid var(--gemini); }
+.comparison-panel.claude { border-top: 3px solid var(--claude); }
+.panel-label { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.panel-label.gemini-label { color: var(--gemini); }
+.panel-label.claude-label { color: var(--claude); }
+.panel-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 15px; color: var(--text); line-height: 1.5; }
+.panel-item .check { color: var(--accent3); font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+.panel-item .cross { color: #e74c3c; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+/* Table */
+.model-table { width: 100%; max-width: 1100px; border-collapse: collapse; }
+.model-table th { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--secondary); padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.model-table td { font-size: 15px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); vertical-align: top; }
+.model-table tr.gemini-row td:first-child { color: var(--gemini); font-weight: 700; }
+.model-table tr.claude-row td:first-child { color: var(--claude); font-weight: 700; }
+.model-table .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+.badge.flagship { background: rgba(218,119,86,0.15); color: var(--accent); }
+.badge.balanced { background: rgba(66,133,244,0.15); color: var(--gemini); }
+.badge.fast { background: rgba(46,139,74,0.15); color: var(--accent3); }
+
+/* Capability grid */
+.cap-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; width: 100%; max-width: 1100px; }
+.cap-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 20px 18px; display: flex; flex-direction: column; gap: 8px; }
+.cap-card .cap-name { font-size: 14px; font-weight: 700; color: var(--bold); }
+.cap-card .cap-icons { display: flex; gap: 12px; align-items: center; }
+.cap-card .cap-status { font-size: 12px; padding: 3px 8px; border-radius: 8px; font-weight: 600; }
+.cap-status.yes { background: rgba(46,139,74,0.2); color: #4ade80; }
+.cap-status.no { background: rgba(231,76,60,0.15); color: #f87171; }
+.cap-status.limited { background: rgba(234,179,8,0.15); color: #facc15; }
+.cap-status.advantage { background: rgba(218,119,86,0.2); color: var(--accent); font-weight: 700; }
+.cap-label { font-size: 11px; color: var(--secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Flow / Channel cards */
+.channel-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; width: 100%; max-width: 1000px; }
+.channel-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.channel-card .ch-icon { font-size: 40px; }
+.channel-card .ch-title { font-size: 16px; font-weight: 700; color: var(--bold); }
+.channel-card .ch-desc { font-size: 13px; color: var(--secondary); line-height: 1.4; }
+
+/* Verdict badge */
+.verdict { display: inline-block; padding: 8px 24px; border-radius: 30px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 10px; }
+.verdict.compete { background: rgba(231,76,60,0.15); color: #f87171; border: 1px solid rgba(231,76,60,0.3); }
+.verdict.coexist { background: rgba(46,139,74,0.15); color: #4ade80; border: 1px solid rgba(46,139,74,0.3); }
+.verdict.evolving { background: rgba(234,179,8,0.15); color: #facc15; border: 1px solid rgba(234,179,8,0.3); }
+
+/* Big stat */
+.big-stat { font-size: 72px; font-weight: 700; color: var(--accent); line-height: 1; }
+.stat-label { font-size: 18px; color: var(--secondary); margin-top: 4px; }
+
+/* Progress */
+.progress { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 100; }
+.progress .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.3s; cursor: pointer; }
+.progress .dot.active { background: var(--accent); width: 24px; border-radius: 4px; }
+.slide-number { position: fixed; top: 30px; right: 40px; font-size: 14px; color: rgba(255,255,255,0.15); font-variant-numeric: tabular-nums; z-index: 100; }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .slide { padding: 40px 30px; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  .card-grid.cols-3, .card-grid.cols-4, .cap-grid { grid-template-columns: 1fr; }
+  .comparison, .card-grid.cols-2 { grid-template-columns: 1fr; }
+  .channel-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Winner pulse */
+@keyframes softPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(218,119,86,0); }
+  50% { box-shadow: 0 0 30px 0 rgba(218,119,86,0.15); }
+}
+.winner { animation: softPulse 2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide active" id="slide-1">
+  <div class="reveal" data-step="0">
+    <h1>Gemini vs Claude</h1>
+    <p class="subtext">Where they compete — and where they don't</p>
+  </div>
+  <div class="reveal" data-step="1">
+    <p class="small-subtext" style="margin-top: 20px; font-size: 14px; color: rgba(255,255,255,0.25);">March 2026</p>
+  </div>
+</div>
+
+<!-- SLIDE 2: 4 Channels -->
+<div class="slide" id="slide-2">
+  <div class="reveal" data-step="0">
+    <h2>Ways to Consume <strong>Gemini</strong></h2>
+    <p class="subtext">Four channels — Claude competes in some, not all</p>
+  </div>
+  <div class="channel-grid">
+    <div class="channel-card reveal-scale" data-step="1">
+      <div class="ch-icon">{ }</div>
+      <div class="ch-title">API</div>
+      <div class="ch-desc">First-party models via Vertex AI</div>
+    </div>
+    <div class="channel-card reveal-scale" data-step="2">
+      <div class="ch-icon">&#9997;</div>
+      <div class="ch-title">App</div>
+      <div class="ch-desc">Gemini app + Workspace integration</div>
+    </div>
+    <div class="channel-card reveal-scale" data-step="3">
+      <div class="ch-icon">&#128187;</div>
+      <div class="ch-title">IDE</div>
+      <div class="ch-desc">Antigravity, Gemini CLI</div>
+    </div>
+    <div class="channel-card reveal-scale" data-step="4">
+      <div class="ch-icon">&#127970;</div>
+      <div class="ch-title">Enterprise</div>
+      <div class="ch-desc">Gemini Enterprise + custom agents</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Model Lineup -->
+<div class="slide" id="slide-3">
+  <div class="reveal" data-step="0">
+    <h2>Model <strong>Lineup</strong></h2>
+    <p class="subtext">Latest flagship models from both platforms</p>
+  </div>
+  <div class="reveal" data-step="1" style="width: 100%; display: flex; justify-content: center;">
+    <table class="model-table">
+      <thead>
+        <tr><th>Model</th><th>Tier</th><th>Best For</th></tr>
+      </thead>
+      <tbody>
+        <tr class="gemini-row"><td>Gemini 3.1 Pro</td><td><span class="badge flagship">Flagship</span></td><td>Complex reasoning, agentic coding, 1M token context</td></tr>
+        <tr class="gemini-row"><td>Gemini 3 Flash</td><td><span class="badge balanced">Balanced</span></td><td>Low latency, high throughput, cost-efficient</td></tr>
+        <tr class="gemini-row"><td>Gemini 3.1 Flash-Lite</td><td><span class="badge fast">Fast</span></td><td>High-volume, cost-sensitive workloads</td></tr>
+        <tr style="height: 12px;"><td colspan="3" style="border: none;"></td></tr>
+        <tr class="claude-row"><td>Claude Opus 4.6</td><td><span class="badge flagship">Flagship</span></td><td>Deep reasoning, coding, 1M context, 14.5h task horizon</td></tr>
+        <tr class="claude-row"><td>Claude Sonnet 4.6</td><td><span class="badge balanced">Balanced</span></td><td>Performance + cost balance, enterprise workflows</td></tr>
+        <tr class="claude-row"><td>Claude Haiku 4.5</td><td><span class="badge fast">Fast</span></td><td>High-speed, cost-effective, real-time moderation</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 4: Capabilities — Who Wins Where -->
+<div class="slide" id="slide-4">
+  <div class="reveal" data-step="0">
+    <h2>Capabilities: <strong>Who Wins Where</strong></h2>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card reveal-scale" data-step="1">
+      <div class="cap-name">Live API (Streaming)</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="1">
+      <div class="cap-name">Image Generation</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="1">
+      <div class="cap-name">Video Generation (Veo)</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="2">
+      <div class="cap-name">Code Generation</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Good</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status advantage">Leader</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="2">
+      <div class="cap-name">Extended Thinking</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Deep Think</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status yes">Strong</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="2">
+      <div class="cap-name">Search Grounding</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Native</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status limited">Limited</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="3">
+      <div class="cap-name">Context Window</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status yes">1M tokens</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status yes">1M tokens</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="3">
+      <div class="cap-name">MCP Support</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Yes</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status yes">Pioneer</div></div>
+      </div>
+    </div>
+    <div class="cap-card reveal-scale" data-step="3">
+      <div class="cap-name">Computer Use</div>
+      <div class="cap-icons">
+        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Android</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status yes">Desktop</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: API — Not Direct Competition -->
+<div class="slide" id="slide-5">
+  <div class="reveal" data-step="0">
+    <h2>Through the API: <strong>Not Direct Competition</strong></h2>
+  </div>
+  <div class="reveal" data-step="1">
+    <p class="subtext" style="max-width: 800px;">Both Claude and Gemini models can be consumed through <strong>Vertex AI</strong> on Google Cloud — we meet the customer where they are</p>
+  </div>
+  <div class="card-grid cols-2 reveal-scale" data-step="2" style="max-width: 700px; margin: 0 auto;">
+    <div class="card gemini-border" style="text-align: center;">
+      <div class="icon">&#9670;</div>
+      <div class="card-title">Gemini on Vertex AI</div>
+      <div class="card-desc">First-party, deep GCP integration, Search grounding, multimodal</div>
+    </div>
+    <div class="card claude-border" style="text-align: center;">
+      <div class="icon">&#9679;</div>
+      <div class="card-title">Claude on Vertex AI</div>
+      <div class="card-desc">Third-party model garden, strong reasoning & coding</div>
+    </div>
+  </div>
+  <div class="reveal" data-step="3">
+    <div class="verdict coexist">Coexist on GCP</div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Through the App -->
+<div class="slide" id="slide-6">
+  <div class="reveal" data-step="0">
+    <h2>Through the <strong>App</strong></h2>
+    <p class="subtext">Workspace integration is the battleground</p>
+  </div>
+  <div class="comparison">
+    <div class="comparison-panel gemini reveal-scale" data-step="1">
+      <div class="panel-label gemini-label">Gemini App</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Deep Google Workspace integration</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Docs, Sheets, Slides, Drive, Gmail</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Maps, YouTube integration</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Custom Gems</div>
+      <div class="panel-item"><span class="check">&#10003;</span> No-code agents from Opal</div>
+    </div>
+    <div class="comparison-panel claude reveal-scale" data-step="2">
+      <div class="panel-label claude-label">Claude App</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Microsoft 365 via Claude Cowork</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Excel & PowerPoint integration</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Google Workspace plugins</div>
+      <div class="panel-item"><span class="cross">&#10007;</span> No Maps / YouTube equivalent</div>
+      <div class="panel-item"><span class="cross">&#10007;</span> No native media generation</div>
+    </div>
+  </div>
+  <div class="reveal" data-step="3">
+    <div class="verdict compete">Direct Competition</div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Through IDE -->
+<div class="slide" id="slide-7">
+  <div class="reveal" data-step="0">
+    <h2>Through the <strong>IDE</strong></h2>
+    <p class="subtext">The coding assistant race</p>
+  </div>
+  <div class="comparison">
+    <div class="comparison-panel gemini reveal-scale" data-step="1">
+      <div class="panel-label gemini-label">Google</div>
+      <div class="panel-item"><span class="check">&#10003;</span> <b>Antigravity</b> — well received, growing fast</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Supports Claude + OpenAI models too</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Gemini CLI — strong alternative</div>
+      <div class="panel-item"><span class="cross">&#10007;</span> No direct "sell" path yet</div>
+      <div class="panel-item" style="font-size: 13px; color: var(--secondary);"><i>Gemini Enterprise integration coming</i></div>
+    </div>
+    <div class="comparison-panel claude reveal-scale" data-step="2">
+      <div class="panel-label claude-label">Anthropic</div>
+      <div class="panel-item"><span class="check">&#10003;</span> <b>Claude Code</b> — gold standard</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Best-in-class coding & reasoning</div>
+      <div class="panel-item"><span class="check">&#10003;</span> SWE-bench leader (80.9%)</div>
+      <div class="panel-item"><span class="cross">&#10007;</span> Anthropic models only</div>
+      <div class="panel-item" style="font-size: 13px; color: var(--secondary);"><i>Works with Claude on GCP too</i></div>
+    </div>
+  </div>
+  <div class="reveal" data-step="3">
+    <div class="verdict evolving">Evolving — Not Direct Yet</div>
+    <p class="small-subtext" style="margin-top: 10px;">Antigravity can consume Claude models — an advantage over Claude Code</p>
+  </div>
+</div>
+
+<!-- SLIDE 8: Enterprise -->
+<div class="slide" id="slide-8">
+  <div class="reveal" data-step="0">
+    <h2><strong>Enterprise</strong> Solutions</h2>
+  </div>
+  <div class="comparison">
+    <div class="comparison-panel gemini reveal-scale" data-step="1">
+      <div class="panel-label gemini-label">Gemini Enterprise</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Deep platform integration</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Custom agents via ADK</div>
+      <div class="panel-item"><span class="check">&#10003;</span> No-code agent builder</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Pre-built CX agents</div>
+      <div class="panel-item"><span class="check">&#10003;</span> More robust ecosystem</div>
+    </div>
+    <div class="comparison-panel claude reveal-scale" data-step="2">
+      <div class="panel-label claude-label">Claude Cowork</div>
+      <div class="panel-item"><span class="check">&#10003;</span> MCP tool integration</div>
+      <div class="panel-item"><span class="check">&#10003;</span> Multi-agent teams</div>
+      <div class="panel-item"><span class="check">&#10003;</span> 14.5h task horizon</div>
+      <div class="panel-item"><span class="cross">&#10007;</span> Fewer pre-built agents</div>
+      <div class="panel-item"><span class="cross">&#10007;</span> No no-code builder</div>
+    </div>
+  </div>
+  <div class="reveal" data-step="3">
+    <div class="verdict compete">Direct Competition</div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Summary -->
+<div class="slide" id="slide-9">
+  <div class="reveal" data-step="0">
+    <h2>The <strong>Bottom Line</strong></h2>
+  </div>
+  <div class="card-grid cols-2 reveal-scale" data-step="1" style="max-width: 900px;">
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 28px; margin-bottom: 8px;">&#128681;</div>
+      <div class="card-title" style="color: #f87171;">Direct Competition</div>
+      <div class="card-desc" style="font-size: 15px; margin-top: 8px;">App (Workspace vs M365)<br>Enterprise (Agents & Platforms)</div>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div style="font-size: 28px; margin-bottom: 8px;">&#129309;</div>
+      <div class="card-title" style="color: #4ade80;">Coexist on GCP</div>
+      <div class="card-desc" style="font-size: 15px; margin-top: 8px;">API via Vertex AI<br>IDE (Antigravity consumes both)</div>
+    </div>
+  </div>
+  <div class="reveal-blur" data-step="2">
+    <p style="font-size: 28px; font-weight: 700; color: var(--bold); max-width: 800px;">Gemini's edge: <strong>multimedia + ecosystem</strong><br><span style="color: var(--gemini);">Claude's edge:</span> <span style="color: var(--claude);">coding + reasoning</span></p>
+  </div>
+  <div class="reveal" data-step="3">
+    <p class="small-subtext">Meet the customer where they are — both live on Google Cloud</p>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="progress" id="progress"></div>
+<div class="slide-number" id="slideNumber">1 / 9</div>
+
+<script>
+const totalSlides = 9;
+let current = 0;
+let revealStep = {};
+for (let i = 0; i < totalSlides; i++) revealStep[i] = -1;
+
+const progress = document.getElementById('progress');
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', (e) => { e.stopPropagation(); goTo(i); });
+  progress.appendChild(dot);
+}
+
+function getMaxStep(slideIdx) {
+  const slide = document.querySelectorAll('.slide')[slideIdx];
+  const reveals = slide.querySelectorAll('[data-step]');
+  let max = -1;
+  reveals.forEach(r => { max = Math.max(max, parseInt(r.dataset.step)); });
+  return max;
+}
+
+function showReveals(slideIdx, upToStep, animate) {
+  const slide = document.querySelectorAll('.slide')[slideIdx];
+  const reveals = slide.querySelectorAll('[data-step]');
+  reveals.forEach(r => {
+    const step = parseInt(r.dataset.step);
+    if (step <= upToStep) {
+      r.classList.add(animate ? 'shown' : 'shown-fast');
+      r.classList.remove(animate ? 'shown-fast' : '');
+    } else {
+      r.classList.remove('shown', 'shown-fast');
+    }
+  });
+}
+
+function goTo(n, direction) {
+  const slides = document.querySelectorAll('.slide');
+  if (n === current && direction === undefined) {
+    const maxStep = getMaxStep(current);
+    revealStep[current] = maxStep;
+    showReveals(current, maxStep, false);
+    return;
+  }
+  slides[current].classList.remove('active');
+  progress.children[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, totalSlides - 1));
+  slides[current].classList.add('active');
+  progress.children[current].classList.add('active');
+  document.getElementById('slideNumber').textContent = (current + 1) + ' / ' + totalSlides;
+  if (direction === 'back') {
+    const maxStep = getMaxStep(current);
+    revealStep[current] = maxStep;
+    showReveals(current, maxStep, false);
+  } else {
+    revealStep[current] = -1;
+    showReveals(current, -1, false);
+    advance();
+  }
+}
+
+function advance() {
+  const maxStep = getMaxStep(current);
+  if (revealStep[current] < maxStep) {
+    revealStep[current]++;
+    showReveals(current, revealStep[current], true);
+    return true;
+  }
+  return false;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+    e.preventDefault();
+    if (!advance()) { if (current < totalSlides - 1) goTo(current + 1, 'forward'); }
+  }
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (current > 0) goTo(current - 1, 'back');
+  }
+  if (e.key === 'f') document.documentElement.requestFullscreen?.();
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.progress')) return;
+  if (e.detail === 2) { document.documentElement.requestFullscreen?.(); return; }
+  if (!advance()) { if (current < totalSlides - 1) goTo(current + 1, 'forward'); }
+});
+
+let cursorTimer;
+document.addEventListener('mousemove', () => {
+  document.body.classList.add('cursor-visible');
+  clearTimeout(cursorTimer);
+  cursorTimer = setTimeout(() => document.body.classList.remove('cursor-visible'), 3000);
+});
+
+advance();
+</script>
+</body>
+</html>
