@@ -186,21 +186,47 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
     <h2>Model <strong>Lineup</strong></h2>
     <p class="subtext">Latest flagship models from both platforms</p>
   </div>
-  <div class="reveal" data-step="1" style="width: 100%; display: flex; justify-content: center;">
-    <table class="model-table">
-      <thead>
-        <tr><th>Model</th><th>Tier</th><th>Best For</th></tr>
-      </thead>
-      <tbody>
-        <tr class="gemini-row"><td>Gemini 3.1 Pro</td><td><span class="badge flagship">Flagship</span></td><td>Complex reasoning, agentic coding, 1M token context</td></tr>
-        <tr class="gemini-row"><td>Gemini 3 Flash</td><td><span class="badge balanced">Balanced</span></td><td>Low latency, high throughput, cost-efficient</td></tr>
-        <tr class="gemini-row"><td>Gemini 3.1 Flash-Lite</td><td><span class="badge fast">Fast</span></td><td>High-volume, cost-sensitive workloads</td></tr>
-        <tr style="height: 12px;"><td colspan="3" style="border: none;"></td></tr>
-        <tr class="claude-row"><td>Claude Opus 4.6</td><td><span class="badge flagship">Flagship</span></td><td>Deep reasoning, coding, 1M context, 14.5h task horizon</td></tr>
-        <tr class="claude-row"><td>Claude Sonnet 4.6</td><td><span class="badge balanced">Balanced</span></td><td>Performance + cost balance, enterprise workflows</td></tr>
-        <tr class="claude-row"><td>Claude Haiku 4.5</td><td><span class="badge fast">Fast</span></td><td>High-speed, cost-effective, real-time moderation</td></tr>
-      </tbody>
-    </table>
+  <div class="comparison" style="max-width: 1000px;">
+    <div class="comparison-panel gemini reveal-scale" data-step="1" style="padding: 28px 24px;">
+      <div class="panel-label gemini-label">Gemini</div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--bold); min-width: 180px;">Gemini 3.1 Pro</span>
+        <span class="badge flagship">Flagship</span>
+      </div>
+      <div class="panel-item" style="margin-bottom: 6px; color: var(--secondary); font-size: 13px;">Complex reasoning, agentic coding, 1M token context</div>
+      <div style="height: 14px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--bold); min-width: 180px;">Gemini 3 Flash</span>
+        <span class="badge balanced">Balanced</span>
+      </div>
+      <div class="panel-item" style="margin-bottom: 6px; color: var(--secondary); font-size: 13px;">Low latency, high throughput, cost-efficient</div>
+      <div style="height: 14px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--bold); min-width: 180px;">Gemini 3.1 Flash-Lite</span>
+        <span class="badge fast">Fast</span>
+      </div>
+      <div class="panel-item" style="margin-bottom: 0; color: var(--secondary); font-size: 13px;">High-volume, cost-sensitive workloads</div>
+    </div>
+    <div class="comparison-panel claude reveal-scale" data-step="2" style="padding: 28px 24px;">
+      <div class="panel-label claude-label">Claude</div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--bold); min-width: 180px;">Claude Opus 4.6</span>
+        <span class="badge flagship">Flagship</span>
+      </div>
+      <div class="panel-item" style="margin-bottom: 6px; color: var(--secondary); font-size: 13px;">Deep reasoning, coding, 1M context, 14.5h task horizon</div>
+      <div style="height: 14px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--bold); min-width: 180px;">Claude Sonnet 4.6</span>
+        <span class="badge balanced">Balanced</span>
+      </div>
+      <div class="panel-item" style="margin-bottom: 6px; color: var(--secondary); font-size: 13px;">Performance + cost balance, enterprise workflows</div>
+      <div style="height: 14px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+        <span style="font-size: 15px; font-weight: 700; color: var(--bold); min-width: 180px;">Claude Haiku 4.5</span>
+        <span class="badge fast">Fast</span>
+      </div>
+      <div class="panel-item" style="margin-bottom: 0; color: var(--secondary); font-size: 13px;">High-speed, cost-effective, real-time moderation</div>
+    </div>
   </div>
 </div>
 
