@@ -91,9 +91,12 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 .cap-status.no { background: rgba(231,76,60,0.15); color: #f87171; }
 .cap-status.limited { background: rgba(234,179,8,0.15); color: #facc15; }
 .cap-status.advantage { background: rgba(218,119,86,0.2); color: var(--accent); font-weight: 700; }
-.cap-card.google-wins { border-color: var(--accent3); background: rgba(46,139,74,0.06); }
-.cap-card.claude-wins { border-color: #e74c3c; background: rgba(231,76,60,0.06); }
-.cap-card.tie { border-color: #eab308; background: rgba(234,179,8,0.06); }
+.cap-card.google-wins { border-color: var(--card-border); background: var(--card-bg); }
+.cap-card.claude-wins { border-color: var(--card-border); background: var(--card-bg); }
+.cap-card.tie { border-color: var(--card-border); background: var(--card-bg); }
+.cap-status.google-win { background: rgba(46,139,74,0.2); color: #4ade80; font-weight: 700; }
+.cap-status.claude-win { background: rgba(231,76,60,0.2); color: #f87171; font-weight: 700; }
+.cap-status.tie-status { background: rgba(234,179,8,0.2); color: #facc15; font-weight: 700; }
 .cap-label { font-size: 11px; color: var(--secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
 /* Flow / Channel cards */
@@ -239,64 +242,64 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
     <div class="cap-card google-wins reveal-scale" data-step="1">
       <div class="cap-name">Live API (Streaming)</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status google-win">Unique</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status claude-win">No</div></div>
       </div>
     </div>
     <div class="cap-card google-wins reveal-scale" data-step="1">
       <div class="cap-name">Image Generation</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status google-win">Unique</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status claude-win">No</div></div>
       </div>
     </div>
     <div class="cap-card google-wins reveal-scale" data-step="1">
       <div class="cap-name">Video Generation (Veo)</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status google-win">Unique</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status claude-win">No</div></div>
       </div>
     </div>
     <div class="cap-card claude-wins reveal-scale" data-step="2">
       <div class="cap-name">Code Generation</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Good</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status advantage">Leader</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status google-win">Good</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status claude-win">Leader</div></div>
       </div>
     </div>
     <div class="cap-card tie reveal-scale" data-step="2">
       <div class="cap-name">Extended Thinking</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Deep Think</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status yes">Strong</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status tie-status">Deep Think</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status tie-status">Strong</div></div>
       </div>
     </div>
     <div class="cap-card google-wins reveal-scale" data-step="2">
       <div class="cap-name">Search Grounding</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Native</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status limited">Limited</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status google-win">Native</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status claude-win">Limited</div></div>
       </div>
     </div>
     <div class="cap-card tie reveal-scale" data-step="3">
       <div class="cap-name">Context Window</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status yes">1M tokens</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status yes">1M tokens</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status tie-status">1M tokens</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status tie-status">1M tokens</div></div>
       </div>
     </div>
     <div class="cap-card tie reveal-scale" data-step="3">
       <div class="cap-name">MCP Support</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Yes</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status yes">Pioneer</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status tie-status">Yes</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status tie-status">Pioneer</div></div>
       </div>
     </div>
     <div class="cap-card tie reveal-scale" data-step="3">
       <div class="cap-name">Computer Use</div>
       <div class="cap-icons">
-        <div><div class="cap-label">Gemini</div><div class="cap-status yes">Android</div></div>
-        <div><div class="cap-label">Claude</div><div class="cap-status yes">Desktop</div></div>
+        <div><div class="cap-label">Gemini</div><div class="cap-status tie-status">Android</div></div>
+        <div><div class="cap-label">Claude</div><div class="cap-status tie-status">Desktop</div></div>
       </div>
     </div>
   </div>
