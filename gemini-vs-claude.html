@@ -68,9 +68,12 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 .panel-item .cross { color: #e74c3c; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
 
 /* Table */
-.model-table { width: 100%; max-width: 1100px; border-collapse: collapse; }
+.model-table { width: 100%; max-width: 1100px; border-collapse: collapse; table-layout: fixed; }
 .model-table th { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--secondary); padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.model-table td { font-size: 15px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); vertical-align: top; }
+.model-table th:nth-child(1) { width: 30%; }
+.model-table th:nth-child(2) { width: 15%; }
+.model-table th:nth-child(3) { width: 55%; }
+.model-table td { font-size: 15px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text); vertical-align: middle; }
 .model-table tr.gemini-row td:first-child { color: var(--gemini); font-weight: 700; }
 .model-table tr.claude-row td:first-child { color: var(--claude); font-weight: 700; }
 .model-table .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
@@ -88,6 +91,9 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
 .cap-status.no { background: rgba(231,76,60,0.15); color: #f87171; }
 .cap-status.limited { background: rgba(234,179,8,0.15); color: #facc15; }
 .cap-status.advantage { background: rgba(218,119,86,0.2); color: var(--accent); font-weight: 700; }
+.cap-card.google-wins { border-color: var(--accent3); background: rgba(46,139,74,0.06); }
+.cap-card.claude-wins { border-color: #e74c3c; background: rgba(231,76,60,0.06); }
+.cap-card.tie { border-color: #eab308; background: rgba(234,179,8,0.06); }
 .cap-label { font-size: 11px; color: var(--secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
 /* Flow / Channel cards */
@@ -204,63 +210,63 @@ h2 { font-size: 42px; font-weight: 700; color: var(--bold); text-align: center; 
     <h2>Capabilities: <strong>Who Wins Where</strong></h2>
   </div>
   <div class="cap-grid">
-    <div class="cap-card reveal-scale" data-step="1">
+    <div class="cap-card google-wins reveal-scale" data-step="1">
       <div class="cap-name">Live API (Streaming)</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="1">
+    <div class="cap-card google-wins reveal-scale" data-step="1">
       <div class="cap-name">Image Generation</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="1">
+    <div class="cap-card google-wins reveal-scale" data-step="1">
       <div class="cap-name">Video Generation (Veo)</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Unique</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status no">No</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="2">
+    <div class="cap-card claude-wins reveal-scale" data-step="2">
       <div class="cap-name">Code Generation</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status yes">Good</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status advantage">Leader</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="2">
+    <div class="cap-card tie reveal-scale" data-step="2">
       <div class="cap-name">Extended Thinking</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status yes">Deep Think</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status yes">Strong</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="2">
+    <div class="cap-card google-wins reveal-scale" data-step="2">
       <div class="cap-name">Search Grounding</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status advantage">Native</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status limited">Limited</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="3">
+    <div class="cap-card tie reveal-scale" data-step="3">
       <div class="cap-name">Context Window</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status yes">1M tokens</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status yes">1M tokens</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="3">
+    <div class="cap-card tie reveal-scale" data-step="3">
       <div class="cap-name">MCP Support</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status yes">Yes</div></div>
         <div><div class="cap-label">Claude</div><div class="cap-status yes">Pioneer</div></div>
       </div>
     </div>
-    <div class="cap-card reveal-scale" data-step="3">
+    <div class="cap-card tie reveal-scale" data-step="3">
       <div class="cap-name">Computer Use</div>
       <div class="cap-icons">
         <div><div class="cap-label">Gemini</div><div class="cap-status yes">Android</div></div>
